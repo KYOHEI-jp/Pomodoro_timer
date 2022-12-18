@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_timer/utils.dart';
 
+
+/// Round と Goal
 class ProgressWidget extends StatelessWidget {
   const ProgressWidget({Key? key}) : super(key: key);
 

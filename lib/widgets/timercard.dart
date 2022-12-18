@@ -3,6 +3,7 @@ import 'package:pomodoro_timer/utils.dart';
 import 'package:pomodoro_timer/widgets/timerservice.dart';
 import 'package:provider/provider.dart';
 
+/// 時間を表示する画面
 class TimerCard extends StatelessWidget {
   const TimerCard({Key? key}) : super(key: key);
 
