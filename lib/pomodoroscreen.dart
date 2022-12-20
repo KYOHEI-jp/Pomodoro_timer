@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_timer/screens/settingsScreen.dart';
 import 'package:pomodoro_timer/widgets/progresswidget.dart';
 import 'package:pomodoro_timer/widgets/timecontroller.dart';
 import 'package:pomodoro_timer/widgets/timercard.dart';
@@ -83,28 +84,42 @@ import 'utils.dart';
 //   }
 // }
 
-class PomodorScreen extends StatefulWidget {
-  const PomodorScreen({Key? key}) : super(key: key);
+/// ポモドーロ画面（ホーム画面扱い）
+class PomodoroScreen extends StatefulWidget {
+  const PomodoroScreen({Key? key}) : super(key: key);
 
   @override
-  State<PomodorScreen> createState() => _PomodorScreenState();
+  State<PomodoroScreen> createState() => _PomodoroScreenState();
 }
 
-class _PomodorScreenState extends State<PomodorScreen> {
+class _PomodoroScreenState extends State<PomodoroScreen> {
+  int _selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
-    int _selectedIndex = 1;
+    void changePage(int _selectedIndex) {
+      if (_selectedIndex == 0) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SettingsScreen()),
+        );
+      } else if (_selectedIndex == 1) {
+        return;
+      }
+    }
 
     void _onItemTapped(int index) {
       setState(() {
         _selectedIndex = index;
       });
+      changePage(index);
     }
 
     final provider = Provider.of<TimerService>(context);
     return Scaffold(
       backgroundColor: renderColor(provider.currentState),
       appBar: AppBar(
+        centerTitle: true,
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: renderColor(provider.currentState),
         title: Text(
