@@ -9,7 +9,7 @@ class TimerOptions extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<TimerService>(context);
     return SingleChildScrollView(
-      controller: ScrollController(initialScrollOffset: 155),
+      controller: ScrollController(initialScrollOffset: 240),
       scrollDirection: Axis.horizontal,
       child: Row(
         children: selectableTimes.map((time) {
@@ -35,7 +35,7 @@ class TimerOptions extends StatelessWidget {
                   style: textStyle(
                       25,
                       int.parse(time) == provider.selectedTime
-                          ? Colors.redAccent
+                          ? renderColor(provider.currentState)
                           : Colors.white,
                       FontWeight.w700),
                 ),
