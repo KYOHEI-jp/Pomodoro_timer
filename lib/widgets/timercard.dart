@@ -10,10 +10,11 @@ class TimerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TimerService>(context);
+    final seconds = provider.currentDuration % 60;
     return Column(
       children: [
         Text(
-          "FOCUS",
+          provider.currentState,
           style: textStyle(
             35,
             Colors.white,
@@ -79,8 +80,13 @@ class TimerCard extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "00",
-                  style: textStyle(70, Colors.redAccent),
+                  seconds == 0
+                      ? "${seconds.round()}0"
+                      : seconds.round().toString(),
+                  style: textStyle(
+                    70,
+                    renderColor(provider.currentState),
+                  ),
                 ),
               ),
             ),
